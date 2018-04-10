@@ -6,6 +6,13 @@
     var kjua = win.kjua;
     var options = {};
 
+    var img = new Image();
+    /*img.onload = function() {
+        context.drawImage(this, 0, 0);
+    };*/
+
+    img.src = 'Nano_basic_logo_50pc.png';
+
     var guiValuePairs = [
         ['size', 'px'],
         ['width', 'x'],
@@ -66,13 +73,14 @@
             fontcolor: '#ee8a2e'
         },
         {
-            mode: 'label',
+            mode: 'image',
             mSize: 9,
             mPosX: 70,
             mPosY: 62,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            image: img
         },
         {
             mode: 'label',
