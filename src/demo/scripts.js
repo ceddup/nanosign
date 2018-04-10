@@ -7,10 +7,6 @@
     var options = {};
 
     var img = new Image();
-    /*img.onload = function() {
-        context.drawImage(this, 0, 0);
-    };*/
-
     img.src = 'Nano_basic_logo_50pc.png';
 
     var guiValuePairs = [
