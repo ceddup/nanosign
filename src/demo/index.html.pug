@@ -1,0 +1,96 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='x-ua-compatible', content='ie=edge')
+        title Make your Nano Sign
+        meta(name='description', content=`demo for ${pkg.name} (${pkg.homepage})`)
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='shortcut icon', type='image/png', href='dummy.png')
+        link(rel='apple-touch-icon-precomposed', type='image/png', href='dummy.png')
+        link(href='https://fonts.googleapis.com/css?family=Ubuntu', rel='stylesheet')
+        link(href='https://fonts.googleapis.com/css?family=Nunito', rel='stylesheet')
+        link(href='styles.css', rel='stylesheet')
+        script(src=`../${pkg.name}-${pkg.version}.min.js`)
+        script(src='scripts.js')
+
+    body
+        div#container
+
+        div.control.left
+            a#banner(href='http://nanosign.org') NanoSign 0.0.1
+
+            hr
+            label(for='render') RENDER MODE
+            select#render
+                option(value='image', selected='selected') image
+                option(value='canvas') canvas
+            label(for='crisp') CRISP
+            select#crisp
+                option(value='true', selected='selected') true
+                option(value='false') false
+
+            hr
+            label(for='size') SIZE:
+            input#size(type='range', value='400', min='100', max='1000', step='50')
+            label(for='width') WIDTH:
+            input#width(type='range', value='3', min='1', max='10', step='1')
+            label(for='fill') FILL
+            input#fill(type='color', value='#498AC7')
+            label(for='back') BACK
+            input#back(type='color', value='#ffffff')
+            label(for='text') CONTENT
+            textarea#text xrb:xrb_3955mshdeaoda1nbgpuj6wiq4x967jky1c435odafpi5qpphiiye6owze4yz
+
+            hr
+            label(for='minversion') MIN VERSION:
+            input#minversion(type='range', value='1', min='1', max='10', step='1')
+            label(for='eclevel') ERROR CORRECTION LEVEL
+            select#eclevel
+                option(value='L') L - low (7%)
+                option(value='M') M - medium (15%)
+                option(value='Q') Q - quartile (25%)
+                option(value='H', selected='selected') H - high (30%)
+            label(for='quiet') QUIET ZONE:
+            input#quiet(type='range', value='1', min='0', max='4', step='1')
+            label(for='rounded') ROUNDED CORNERS:
+            input#rounded(type='range', value='100', min='0', max='100', step='10')
+
+        div.control.right
+            label(for='item') ITEM
+            select#item
+                option(value='0') item 1
+                option(value='1') item 2
+                option(value='2') item 3
+                option(value='3') item 4
+                option(value='4') item 5
+                option(value='5') item 6
+                option(value='6') item 7
+            label(for='mode') MODE
+            select#mode
+                option(value='label', selected='selected') label
+                option(value='image') image
+
+            hr
+            label(for='msize') SIZE:
+            input#msize(type='range', value='20', min='0', max='40', step='1')
+            label(for='mposx') POS X:
+            input#mposx(type='range', value='9', min='0', max='100', step='1')
+            label(for='mposy') POS Y:
+            input#mposy(type='range', value='50', min='0', max='100', step='1')
+
+            hr
+            label(for='label') LABEL
+            input#label(type='text', value='NANO')
+            label(for='font') FONT NAME
+            input#font(type='text', value='Nunito')
+            // label(for='fontweight') FONT WEIGHT
+            // input#fontweight(type='text', value='300')
+            label(for='fontcolor') FONT COLOR
+            input#fontcolor(type='color', value='#000000')
+
+            hr
+            label(for='image') IMAGE
+            input#image(type='file')
+
+        img#img-buffer(src='dummy.png')
