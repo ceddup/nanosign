@@ -79,7 +79,31 @@ input, textarea, select {
     height: 48px;
 }
 
-#img-buffer {
+#img-buffer0 {
+    display: none;
+}
+
+#img-buffer1 {
+    display: none;
+}
+
+#img-buffer2 {
+    display: none;
+}
+
+#img-buffer3 {
+    display: none;
+}
+
+#img-buffer4 {
+    display: none;
+}
+
+#img-buffer5 {
+    display: none;
+}
+
+#img-buffer6 {
     display: none;
 }
 

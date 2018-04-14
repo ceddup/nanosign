@@ -9,10 +9,6 @@
     var img = new Image();
     img.src = 'Nano_basic_logo.png';
 
-    var img2 = new Image();
-    img2.src = 'Nano_basic_dark.png';
-
-
     var guiValuePairs = [
         ['size', 'px'],
         ['width', 'x'],
@@ -52,15 +48,14 @@
             mPosY: 50,
             label: 'NANO',
             fontname: 'Nunito',
-            fontcolor: '#000000',
-            image: img2
+            fontcolor: '#000000'
         },
         {
             mode: 'label',
             mSize: 14,
             mPosX: 74,
             mPosY: 47,
-            label: 'NANO ACCEPTED HERE+',
+            label: 'NANO ACCEPTED HERE',
             fontname: 'Nunito',
             fontcolor: '#000000'
         },
@@ -134,7 +129,6 @@
     }
 
     function updateQrCode() {
-        console.log('updateQrCode');
         options.render = valById('render');
         options.crisp = valById('crisp') === 'true';
         options.ecLevel = valById('eclevel');
@@ -161,7 +155,7 @@
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
 
-            image: elById('img-buffer')
+            image: elById('img-buffer' + valById('item'))
         };
         var container = elById('container');
         var qrcode = kjua(options);
@@ -181,22 +175,16 @@
     }
 
     function onImageInput() {
-        console.log('onImageInput');
-        // global.console.log('onImageInput');
-        // global.console.log('onImageInput elById("mode").value : ' + elById('mode').value);
-        // global.console.log('onImageInput options.items[' + item + '].mode : ' + options.items[item].mode);
         var input = elById('image');
         if (input.files && input.files[0]) {
             var reader = new FR();
             reader.onload = function (ev) {
-                elById('img-buffer').setAttribute('src', ev.target.result);
+                elById('img-buffer' + valById('item')).setAttribute('src', ev.target.result);
                 elById('mode').value = 'image';
                 setTimeout(update, 100);
             };
             reader.readAsDataURL(input.files[0]);
         }
-        // global.console.log('onImageInput elById("mode").value : ' + elById('mode').value);
-        // global.console.log('onImageInput options.items[' + item + '].mode : ' + options.items[item].mode);
     }
 
     function onItemChanged() {
@@ -208,11 +196,9 @@
         elById('label').value = options.items[item].label;
         elById('font').value = options.items[item].fontname;
         elById('fontcolor').value = options.items[item].fontcolor;
-        elById('img-buffer').value = options.items[item].image;
     }
 
     onReady(function () {
-        // console.log('onReady');
         onEvent(elById('item'), 'change', onItemChanged);
         onEvent(elById('image'), 'change', onImageInput);
         all('input, textarea, select', function (el) {
