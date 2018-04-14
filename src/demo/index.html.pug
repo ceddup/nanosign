@@ -11,7 +11,7 @@ html(lang='en')
         link(href='https://fonts.googleapis.com/css?family=Ubuntu', rel='stylesheet')
         link(href='https://fonts.googleapis.com/css?family=Nunito', rel='stylesheet')
         link(href='styles.css', rel='stylesheet')
-        script(src=`../${pkg.name}-${pkg.version}.min.js`)
+        script(src=`${pkg.name}-${pkg.version}.min.js`)
         script(src='scripts.js')
 
     body
@@ -40,7 +40,7 @@ html(lang='en')
             label(for='back') BACK
             input#back(type='color', value='#ffffff')
             label(for='text') CONTENT
-            textarea#text xrb:xrb_3955mshdeaoda1nbgpuj6wiq4x967jky1c435odafpi5qpphiiye6owze4yz
+            textarea#text xrb:xrb_<your_nano_address>
 
             hr
             label(for='minversion') MIN VERSION:
