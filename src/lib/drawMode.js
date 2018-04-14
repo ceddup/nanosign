@@ -38,6 +38,7 @@ const drawImage = (context, settings, item) => {
 };
 
 const drawMode = (context, settings) => {
+    console.log('settings : ' + JSON.stringify(settings));
     for (const item of settings.items) {
         if (item.mode === 'label') {
             drawLabel(context, settings, item);

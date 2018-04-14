@@ -6,6 +6,13 @@
     var kjua = win.kjua;
     var options = {};
 
+    var img = new Image();
+    img.src = 'Nano_basic_logo.png';
+
+    var img2 = new Image();
+    img2.src = 'Nano_basic_dark.png';
+
+
     var guiValuePairs = [
         ['size', 'px'],
         ['width', 'x'],
@@ -39,20 +46,21 @@
 
         // Init defaults
         options.items = [{
-            mode: 'label',
+            mode: 'image',
             mSize: 20,
-            mPosX: 9,
+            mPosX: 17,
             mPosY: 50,
             label: 'NANO',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            image: img2
         },
         {
             mode: 'label',
             mSize: 14,
             mPosX: 74,
             mPosY: 47,
-            label: 'NANO ACCEPTED HERE',
+            label: 'NANO ACCEPTED HERE+',
             fontname: 'Nunito',
             fontcolor: '#000000'
         },
@@ -66,13 +74,14 @@
             fontcolor: '#ee8a2e'
         },
         {
-            mode: 'label',
+            mode: 'image',
             mSize: 9,
             mPosX: 70,
             mPosY: 62,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            image: img
         },
         {
             mode: 'label',
@@ -125,6 +134,7 @@
     }
 
     function updateQrCode() {
+        console.log('updateQrCode');
         options.render = valById('render');
         options.crisp = valById('crisp') === 'true';
         options.ecLevel = valById('eclevel');
@@ -171,16 +181,22 @@
     }
 
     function onImageInput() {
+        console.log('onImageInput');
+        // global.console.log('onImageInput');
+        // global.console.log('onImageInput elById("mode").value : ' + elById('mode').value);
+        // global.console.log('onImageInput options.items[' + item + '].mode : ' + options.items[item].mode);
         var input = elById('image');
         if (input.files && input.files[0]) {
             var reader = new FR();
             reader.onload = function (ev) {
                 elById('img-buffer').setAttribute('src', ev.target.result);
-                elById('mode').value = 4;
+                elById('mode').value = 'image';
                 setTimeout(update, 100);
             };
             reader.readAsDataURL(input.files[0]);
         }
+        // global.console.log('onImageInput elById("mode").value : ' + elById('mode').value);
+        // global.console.log('onImageInput options.items[' + item + '].mode : ' + options.items[item].mode);
     }
 
     function onItemChanged() {
@@ -196,6 +212,7 @@
     }
 
     onReady(function () {
+        // console.log('onReady');
         onEvent(elById('item'), 'change', onItemChanged);
         onEvent(elById('image'), 'change', onImageInput);
         all('input, textarea, select', function (el) {
@@ -203,6 +220,7 @@
             onEvent(el, 'change', update);
         });
         onEvent(win, 'load', update);
+        onItemChanged();
         update();
     });
 }());

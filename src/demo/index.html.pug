@@ -6,7 +6,7 @@ html(lang='en')
         title Make your Nano Sign
         meta(name='description', content=`demo for ${pkg.name} (${pkg.homepage})`)
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        link(rel='shortcut icon', type='image/png', href='dummy.png')
+        link(rel='shortcut icon', type='image/png', href='Nano_basic_logo.png')
         link(rel='apple-touch-icon-precomposed', type='image/png', href='dummy.png')
         link(href='https://fonts.googleapis.com/css?family=Ubuntu', rel='stylesheet')
         link(href='https://fonts.googleapis.com/css?family=Nunito', rel='stylesheet')
@@ -70,7 +70,6 @@ html(lang='en')
             select#mode
                 option(value='label', selected='selected') label
                 option(value='image') image
-
             hr
             label(for='msize') SIZE:
             input#msize(type='range', value='20', min='0', max='40', step='1')
@@ -93,4 +92,4 @@ html(lang='en')
             label(for='image') IMAGE
             input#image(type='file')
 
-        img#img-buffer(src='dummy.png')
+        img#img-buffer(src='Nano_basic_dark.png')
