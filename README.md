@@ -9,9 +9,13 @@ Feel free to fork, make PRs or feature requests, just hit 'Issues'.
 
 ## Build nanosign
 make sure node.js is setup
+
 git clone https://github.com/ceddup/nanosign
+
 cd nanosign
+
 npm run build
+
 index.html is in /build/demo
 
 ## Donate to nanosign
