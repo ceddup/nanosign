@@ -22,7 +22,7 @@ html(lang='en')
         div.control.left
             a#banner(href='http://nanosign.org') NanoSign 0.0.1
 
-            hr
+            <!--hr
             label(for='render') RENDER MODE
             select#render
                 option(value='image', selected='selected') image
@@ -30,11 +30,11 @@ html(lang='en')
             label(for='crisp') CRISP
             select#crisp
                 option(value='true', selected='selected') true
-                option(value='false') false
+                option(value='false') false-->
 
             hr
             label(for='size') SIZE:
-            input#size(type='range', value='400', min='100', max='1000', step='50')
+            input#size(type='range', value='350', min='100', max='1000', step='50')
             label(for='width') WIDTH:
             input#width(type='range', value='3', min='1', max='10', step='1')
             label(for='fill') FILL
@@ -93,6 +93,13 @@ html(lang='en')
             hr
             label(for='image') IMAGE
             input#image(type='file')
+
+            hr
+            div.bottomlinks(style="display:flex;align-items:center;")
+                a(href='https://github.com/ceddup/nanosign')
+                    img(src="github-256-black.png", style="height:30px;") 
+                span(style="line-height:30px;")
+                    a(href='https://github.com/ceddup/nanosign', target="_blank") Nanosign on Github
 
         img#img-buffer0(src='Nano_basic_dark.png')
 
