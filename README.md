@@ -1,7 +1,5 @@
 # nanosign
 
-[![license][license-img]][github]
-
 A simple way to make a 'NANO ACCEPTED HERE' sign with a QRCode.
 
 It's built on the great [kjua](https://larsjung.de/kjua/) QRCode generator and based on the the Official/Unofficial media kit from [/u/theaaronp](https://www.reddit.com/u/theaaronp)
