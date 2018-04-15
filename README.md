@@ -1,6 +1,6 @@
 # nanosign
 
-[![license][license-img]]
+[![license][license-img]][github]
 
 A simple way to make a 'NANO ACCEPTED HERE' sign with a QRCode.
 
