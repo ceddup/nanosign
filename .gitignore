@@ -91,3 +91,4 @@ www/raiwallet/braiwallet.js
 .eslint.json
 
 /dist
+/build
