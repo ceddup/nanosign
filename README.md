@@ -34,6 +34,8 @@ Nano official web site: [nano.org](https://nano.org)
 
 Nano currency guide: [wikicryptocoins.com](https://www.wikicryptocoins.com/currency/Nano)
 
+Losts of informations about Nano, Nano nodes, etc: [nanode21.cloud](https://nanode21.cloud)
+
 ## Donate to nanosign
 Join us to improve this alpha work or donate!
 ![](http://nanosign.org/Nanosign_donate.png)

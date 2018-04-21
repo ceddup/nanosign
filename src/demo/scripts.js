@@ -207,7 +207,7 @@
         });
         onEvent(win, 'load', update);
         onItemChanged();
-        update();
+        setTimeout(update, 100);
     });
 }());
 /* eslint-enable */
