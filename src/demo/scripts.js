@@ -9,6 +9,9 @@
     var img = new Image();
     img.src = 'Nano_basic_logo.png';
 
+    var img2 = new Image();
+    img2.src = 'Nano_basic_dark.png';
+
     var guiValuePairs = [
         ['size', 'px'],
         ['width', 'x'],
@@ -165,13 +168,31 @@
         if (qrcode) {
             container.appendChild(qrcode);
         }
+
+        //console.log('getAsUriParameters(options)', getAsUriParameters(options));
+        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
+        //location.hash = getAsUriParameters(options);
     }
+
+    function getAsUriParameters (data) {
+        return Object.keys(data).map(function (k) {
+            if (_.isArray(data[k])) {
+                return data[k].map(function (subData, index) {
+                    var keyE = encodeURIComponent(k + '[' + index + ']');
+                    return keyE + '=' + encodeURIComponent('{') + getAsUriParameters ( subData ) + encodeURIComponent('}');
+                }).join('&');
+            } else {
+                return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+            }
+        }).join('&');
+    };
 
     function update() {
         updateGui();
         setTimeout(function () {
             updateQrCode();
         }, 250);
+        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
     }
 
     function onImageInput() {
@@ -196,18 +217,40 @@
         elById('label').value = options.items[item].label;
         elById('font').value = options.items[item].fontname;
         elById('fontcolor').value = options.items[item].fontcolor;
+        onModeChanged();
+    }
+
+    function onModeChanged() {
+        if (elById('mode').value === 'label'){
+            elById('fontblock').style.display = 'block';
+            elById('imageblock').style.display = 'none';
+        } else {
+            elById('fontblock').style.display = 'none';
+            elById('imageblock').style.display = 'block';
+        }
     }
 
     onReady(function () {
         onEvent(elById('item'), 'change', onItemChanged);
         onEvent(elById('image'), 'change', onImageInput);
+        onEvent(elById('mode'), 'change', onModeChanged);
         all('input, textarea, select', function (el) {
             onEvent(el, 'input', update);
             onEvent(el, 'change', update);
         });
         onEvent(win, 'load', update);
         onItemChanged();
+        onModeChanged();
+        console.log('location.hash',location.hash);
+        console.log('location.hash.startsWith(#options)',location.hash.startsWith('#options'));
+        if (location.hash.startsWith('#options')) {
+            console.log('location.hash.substring(9)éé', decodeURIComponent(location.hash).substring(9));
+            options = JSON.parse(decodeURIComponent(location.hash).substring(9));
+            options.items[0].image = img2;
+            options.items[3].image = img;
+        }
         setTimeout(update, 100);
+        console.log('window.location', JSON.stringify(window.location));
     });
 }());
 /* eslint-enable */
