@@ -185,10 +185,6 @@
         if (qrcode) {
             container.appendChild(qrcode);
         }
-
-        //console.log('getAsUriParameters(options)', getAsUriParameters(options));
-        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
-        //location.hash = getAsUriParameters(options);
     }
 
     function getAsUriParameters (data) {
@@ -209,7 +205,12 @@
         setTimeout(function () {
             updateQrCode();
         }, 250);
-        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
+    }
+
+    function updateHash() {
+        console.log('location.hash', '' + location.hash + '');
+        location.hash = encodeURIComponent('options=' + JSON.stringify(options)); // if (location.hash) 
+        update();
     }
 
     function onImageInput() {
@@ -245,6 +246,7 @@
             elById('fontblock').style.display = 'none';
             elById('imageblock').style.display = 'block';
         }
+        var item = valById('item');
         elById('stroke').checked = options.items[item].stroke;
     }
 
@@ -253,11 +255,10 @@
         onEvent(elById('image'), 'change', onImageInput);
         onEvent(elById('mode'), 'change', onModeChanged);
         all('input, textarea, select', function (el) {
-            onEvent(el, 'input', update);
+            onEvent(el, 'input', updateHash);
             onEvent(el, 'change', update);
         });
         onEvent(win, 'load', update);
-        onItemChanged();
         onModeChanged();
         if (location.hash.startsWith('#options')) {
             options = JSON.parse(decodeURIComponent(location.hash).substring(9));
