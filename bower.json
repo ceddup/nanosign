@@ -1,15 +1,15 @@
 {
-  "name": "kjua",
-  "description": "Dynamically generated QR codes for modern browsers.",
-  "homepage": "https://larsjung.de/kjua/",
+  "name": "nanosign",
+  "description": "Making a Nano accepted here sign with QR code",
+  "homepage": "http://nanosign.org",
   "authors": [
-    "Lars Jung <lrsjng@gmail.com> (https://larsjung.de)"
+    "Cédric Dupont <ceddup@gmail.com> (http://nanosign.org)"
   ],
-  "main": "dist/kjua.min.js",
+  "main": "dist/nanosign.min.js",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lrsjng/kjua.git"
+    "url": "https://github.com/ceddup/nanosign.git"
   },
   "ignore": [
     "*",

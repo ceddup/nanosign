@@ -3,11 +3,20 @@
     var win = window; // eslint-disable-line no-undef
     var FR = win.FileReader;
     var doc = win.document;
-    var kjua = win.kjua;
+    var nanosign = win.nanosign;
     var options = {};
 
     var img = new Image();
     img.src = 'Nano_basic_logo.png';
+
+    var nunitoFont = new FontFaceObserver('Nunito');
+
+    // Refresh when Nunito font is loaded
+    nunitoFont.load().then(function () {
+        update();
+    }, function () {
+        console.log('Nunito is not available');
+    });
 
     var guiValuePairs = [
         ['size', 'px'],
@@ -48,7 +57,8 @@
             mPosY: 50,
             label: 'NANO',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -57,7 +67,8 @@
             mPosY: 47,
             label: 'NANO ACCEPTED HERE',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -66,7 +77,8 @@
             mPosY: 63,
             label: 'Pay with NANO',
             fontname: 'Nunito',
-            fontcolor: '#ee8a2e'
+            fontcolor: '#ee8a2e',
+            stroke: true
         },
         {
             mode: 'image',
@@ -76,7 +88,8 @@
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
-            image: img
+            image: img,
+            stroke: true
         },
         {
             mode: 'label',
@@ -85,7 +98,8 @@
             mPosY: 50,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -94,7 +108,8 @@
             mPosY: 50,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -103,7 +118,8 @@
             mPosY: 50,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         }
         ];
     }
@@ -154,11 +170,12 @@
             label: valById('label'),
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
+            stroke: elById('stroke').checked,
 
             image: elById('img-buffer' + valById('item'))
         };
         var container = elById('container');
-        var qrcode = kjua(options);
+        var qrcode = nanosign(options);
         forEach(container.childNodes, function (child) {
             container.removeChild(child);
         });
@@ -196,6 +213,7 @@
         elById('label').value = options.items[item].label;
         elById('font').value = options.items[item].fontname;
         elById('fontcolor').value = options.items[item].fontcolor;
+        elById('stroke').checked = options.items[item].stroke;
     }
 
     onReady(function () {
@@ -207,7 +225,8 @@
         });
         onEvent(win, 'load', update);
         onItemChanged();
-        setTimeout(update, 100);
+        //setTimeout(update, 200);
+        document.fonts.ready.then(function () { update() });
     });
 }());
 /* eslint-enable */

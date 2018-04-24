@@ -14,8 +14,8 @@ html(lang='en')
         link(href='https://fonts.googleapis.com/css?family=Nunito', rel='stylesheet')
         link(href='styles.css', rel='stylesheet')
         script(src=`${pkg.name}-${pkg.version}.min.js`)
+        script(src='fontfaceobserver.js')
         script(src='scripts.js')
-
     body
         div#container
 
@@ -89,6 +89,10 @@ html(lang='en')
             // input#fontweight(type='text', value='300')
             label(for='fontcolor') FONT COLOR
             input#fontcolor(type='color', value='#000000')
+            div.bottomlinks(style="display:flex;align-items:center;")
+                input#stroke(type='checkbox', checked, style="width: 20px;")
+                span(style="line-height:30px;")
+                    label(for='stroke') STROKE
 
             hr
             label(for='image') IMAGE

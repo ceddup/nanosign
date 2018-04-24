@@ -19,9 +19,19 @@ git clone https://github.com/ceddup/nanosign
 
 cd nanosign
 
+npm install
+
 npm run build
 
 index.html is in /build/demo
+
+You can view it with a simple http server like http-server. To do so:
+
+npm install http-server -g
+
+http-server
+
+Go to [http://localhost:8080/build/demo/index.html](http://localhost:8080/build/demo/index.html)
 
 ## Nano links
 You can get a very descent Nano wallet here : [getCanoe.io](https://getcanoe.io). There are many other Nano wallets out there, like Nanovault, Nanowallet et al.

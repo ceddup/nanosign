@@ -1,16 +1,16 @@
 {
-  "name": "kjua",
-  "version": "0.1.2",
-  "description": "Dynamically generated QR codes for modern browsers.",
-  "homepage": "https://larsjung.de/kjua/",
-  "bugs": "https://github.com/lrsjng/kjua/issues",
-  "author": "Lars Jung <lrsjng@gmail.com> (https://larsjung.de)",
+  "name": "nanosign",
+  "version": "0.0.1",
+  "description": "Make a Nano accepted here sign with QR codes.",
+  "homepage": "http://nanosign.org",
+  "bugs": "https://github.com/ceddup/nanosign/issues",
+  "author": "Cédric Dupont <ceddup@gmail.com> (http://nanosign.org)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lrsjng/kjua.git"
+    "url": "https://github.com/ceddup/nanosign.git"
   },
-  "main": "dist/kjua.min.js",
+  "main": "dist/nanosign.min.js",
   "scripts": {
     "lint": "eslint .",
     "build": "node ghu release",
