@@ -3,7 +3,7 @@
     var win = window; // eslint-disable-line no-undef
     var FR = win.FileReader;
     var doc = win.document;
-    var kjua = win.kjua;
+    var nanosign = win.nanosign;
     var options = {};
 
     var img = new Image();
@@ -11,6 +11,15 @@
 
     var img2 = new Image();
     img2.src = 'Nano_basic_dark.png';
+
+    var nunitoFont = new FontFaceObserver('Nunito');
+
+    // Refresh when Nunito font is loaded
+    nunitoFont.load().then(function () {
+        update();
+    }, function () {
+        console.log('Nunito is not available');
+    });
 
     var guiValuePairs = [
         ['size', 'px'],
@@ -51,7 +60,8 @@
             mPosY: 50,
             label: 'NANO',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -60,7 +70,8 @@
             mPosY: 47,
             label: 'NANO ACCEPTED HERE',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -69,7 +80,8 @@
             mPosY: 63,
             label: 'Pay with NANO',
             fontname: 'Nunito',
-            fontcolor: '#ee8a2e'
+            fontcolor: '#ee8a2e',
+            stroke: true
         },
         {
             mode: 'image',
@@ -79,7 +91,8 @@
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
-            image: img
+            image: img,
+            stroke: true
         },
         {
             mode: 'label',
@@ -88,7 +101,8 @@
             mPosY: 50,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -97,7 +111,8 @@
             mPosY: 50,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         },
         {
             mode: 'label',
@@ -106,7 +121,8 @@
             mPosY: 50,
             label: '',
             fontname: 'Nunito',
-            fontcolor: '#000000'
+            fontcolor: '#000000',
+            stroke: true
         }
         ];
     }
@@ -157,11 +173,12 @@
             label: valById('label'),
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
+            stroke: elById('stroke').checked,
 
             image: elById('img-buffer' + valById('item'))
         };
         var container = elById('container');
-        var qrcode = kjua(options);
+        var qrcode = nanosign(options);
         forEach(container.childNodes, function (child) {
             container.removeChild(child);
         });
@@ -228,6 +245,7 @@
             elById('fontblock').style.display = 'none';
             elById('imageblock').style.display = 'block';
         }
+        elById('stroke').checked = options.items[item].stroke;
     }
 
     onReady(function () {
@@ -241,16 +259,13 @@
         onEvent(win, 'load', update);
         onItemChanged();
         onModeChanged();
-        console.log('location.hash',location.hash);
-        console.log('location.hash.startsWith(#options)',location.hash.startsWith('#options'));
         if (location.hash.startsWith('#options')) {
-            console.log('location.hash.substring(9)éé', decodeURIComponent(location.hash).substring(9));
             options = JSON.parse(decodeURIComponent(location.hash).substring(9));
             options.items[0].image = img2;
             options.items[3].image = img;
         }
         setTimeout(update, 100);
-        console.log('window.location', JSON.stringify(window.location));
+        document.fonts.ready.then(function () { update() });
     });
 }());
 /* eslint-enable */
