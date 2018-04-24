@@ -1,7 +1,7 @@
 const {resolve, join} = require('path');
 const {ghu, includeit, jszip, mapfn, pug, read, remove, run, uglify, webpack, wrap, write} = require('ghu');
 
-const NAME = 'kjua';
+const NAME = 'nanosign';
 
 const ROOT = resolve(__dirname);
 const SRC = join(ROOT, 'src');
@@ -52,7 +52,8 @@ ghu.task('build:script', runtime => {
         .then(uglify({compressor: {warnings: false}}))
         .then(wrap(runtime.commentJs))
         .then(write(`${DIST}/${NAME}.min.js`, {overwrite: true}))
-        .then(write(`${BUILD}/${NAME}-${runtime.pkg.version}.min.js`, {overwrite: true}));
+        .then(write(`${BUILD}/${NAME}-${runtime.pkg.version}.min.js`, {overwrite: true}))
+        .then(write(`${BUILD}/demo/${NAME}-${runtime.pkg.version}.min.js`, {overwrite: true}));
 });
 
 ghu.task('build:copy', () => {

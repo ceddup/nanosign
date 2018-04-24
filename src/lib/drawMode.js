@@ -16,7 +16,7 @@ const drawLabel = (context, settings, item) => {
         const x = sl * size;
         const y = st * size + 0.75 * item.mSize * 0.01 * size;
 
-        context.strokeText(item.label, x, y);
+        if (item.stroke) context.strokeText(item.label, x, y);
         context.fillText(item.label, x, y);
     }
 };
