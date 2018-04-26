@@ -207,8 +207,7 @@
 
     function updateHash() {
         update();
-        console.log('updateHash options.items[0].mposx', options.items[0].mposx);
-        location.hash = encodeURIComponent('options=' + JSON.stringify(options)); // if (location.hash) 
+        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
     }
 
     function onImageInput() {
@@ -284,7 +283,6 @@
             elById('font').value = options.items[0].font;
             elById('fontcolor').value = options.items[0].fontcolor;
             elById('stroke').value = options.items[0].stroke;
-            //elById('image').value = options.items[0].image;
         }
         setTimeout(update, 100);
         document.fonts.ready.then(function () { update() });
