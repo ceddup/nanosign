@@ -12,6 +12,9 @@ Feel free to fork, make PRs or feature requests, just hit 'Issues'.
 
 **Please do send me the signs you make up with this tool so I can display it here as a gallery! -> Just make a ticket with your sign attached or PM me on [reddit](https://www.reddit.com/user/ceddup/). This is a cool way to give back to Nanosign.**
 
+## Demo
+Check it out ! [nanosign.org](http://nanosign.org)
+
 ## Build nanosign
 make sure node.js is setup
 
