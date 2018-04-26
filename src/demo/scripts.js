@@ -253,8 +253,12 @@
         onEvent(elById('image'), 'change', onImageInput);
         onEvent(elById('mode'), 'change', onModeChanged);
         all('input, textarea, select', function (el) {
-            onEvent(el, 'input', updateHash);
-            onEvent(el, 'change', updateHash);
+            if (el.id !== 'item') {
+                onEvent(el, 'input', updateHash);
+                onEvent(el, 'change', updateHash);
+            } else {
+                onEvent(el, 'change', update);
+            }
         });
         onEvent(win, 'load', update);
         onModeChanged();
