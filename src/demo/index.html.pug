@@ -86,8 +86,16 @@ html(lang='en')
 
             div#imageblock
                 hr
-                label(for='image') IMAGE
-                input#image(type='file')
+                label(for='imageinput') IMAGE INPUT
+                select#imageinput
+                    option(value='url', selected='selected') url
+                    option(value='local') local
+                div#imageinputurlblock
+                    label(for='imageurl') IMAGE URL
+                    input#imageurl(type='text', value='http://nanosign.org/Nano_basic_dark.png', onfocus='this.setSelectionRange(0, this.value.length)')
+                div#imageinputlocalblock
+                    label(for='image') LOCAL IMAGE
+                    input#image(type='file')
 
             hr
             div.bottomlinks(style="display:flex;align-items:center;")

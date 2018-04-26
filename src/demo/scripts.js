@@ -6,12 +6,6 @@
     var nanosign = win.nanosign;
     var options = {};
 
-    var img = new Image();
-    img.src = 'Nano_basic_logo.png';
-
-    var img2 = new Image();
-    img2.src = 'Nano_basic_dark.png';
-
     var nunitoFont = new FontFaceObserver('Nunito');
 
     // Refresh when Nunito font is loaded
@@ -31,6 +25,12 @@
         ['mposx', '%'],
         ['mposy', '%']
     ];
+
+    function newImage() {
+        var img = new Image();
+        img.src = 'Nano_basic_logo.png';
+        return img;
+    }
 
     function elById(id) {
         return doc.getElementById(id);
@@ -61,7 +61,8 @@
             label: 'NANO',
             fontname: 'Nunito',
             fontcolor: '#000000',
-            stroke: true
+            stroke: true,
+            imageurl: 'http://nanosign.org/Nano_basic_dark.png'
         },
         {
             mode: 'label',
@@ -91,8 +92,8 @@
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
-            image: img,
-            stroke: true
+            stroke: true,
+            imageurl: 'http://nanosign.org/Nano_basic_logo.png'
         },
         {
             mode: 'label',
@@ -174,9 +175,24 @@
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
             stroke: elById('stroke').checked,
-
+            imageurl: valById('imageurl'),
             image: elById('img-buffer' + valById('item'))
         };
+        forEach(options.items, function (item) {
+            if (!item.image || item.image.src !== item.imageurl) {
+                if (!item.image || !item.image.src || item.image.src === ''){
+                    item.image = newImage();
+                }
+                if (item.imageurl && item.imageurl !== '') {            
+                    item.image.src = item.imageurl;
+                    if (!item.image.complete) {
+                        item.image.onload = function() {
+                            update();
+                        };
+                    }
+                }
+            }
+        });
         var container = elById('container');
         var qrcode = nanosign(options);
         forEach(container.childNodes, function (child) {
@@ -217,6 +233,7 @@
             reader.onload = function (ev) {
                 elById('img-buffer' + valById('item')).setAttribute('src', ev.target.result);
                 elById('mode').value = 'image';
+                elById('imageurl').value = '';
                 setTimeout(update, 100);
             };
             reader.readAsDataURL(input.files[0]);
@@ -232,6 +249,8 @@
         elById('label').value = options.items[item].label;
         elById('font').value = options.items[item].fontname;
         elById('fontcolor').value = options.items[item].fontcolor;
+        elById('imageurl').value = options.items[item].imageurl;
+        elById('stroke').checked = options.items[item].stroke;
         onModeChanged();
     }
 
@@ -243,8 +262,16 @@
             elById('fontblock').style.display = 'none';
             elById('imageblock').style.display = 'block';
         }
-        var item = valById('item');
-        elById('stroke').checked = options.items[item].stroke;
+    }
+
+    function onImageInputChanged() {
+        if (elById('imageinput').value === 'url'){
+            elById('imageinputurlblock').style.display = 'block';
+            elById('imageinputlocalblock').style.display = 'none';
+        } else {
+            elById('imageinputurlblock').style.display = 'none';
+            elById('imageinputlocalblock').style.display = 'block';
+        }
     }
 
     onReady(function () {
@@ -252,19 +279,21 @@
         onEvent(elById('image'), 'change', onImageInput);
         onEvent(elById('mode'), 'change', onModeChanged);
         all('input, textarea, select', function (el) {
-            if (el.id !== 'item') {
+            if (el.id === 'item') {
+                onEvent(el, 'change', update);
+            } else if (el.id === 'imageinput') {
+                onEvent(el, 'change', onImageInputChanged);
+            } else {
                 onEvent(el, 'input', updateHash);
                 onEvent(el, 'change', updateHash);
-            } else {
-                onEvent(el, 'change', update);
+                onEvent(el, 'paste', updateHash); 
             }
         });
         onEvent(win, 'load', update);
         onModeChanged();
+        onImageInputChanged();
         if (location.hash.startsWith('#options')) {
             options = JSON.parse(decodeURIComponent(location.hash).substring(9));
-            options.items[0].image = img2;
-            options.items[3].image = img;
             elById('size').value = options.size;
             elById('width').value = options.width;
             elById('fill').value = options.fill;
@@ -283,9 +312,9 @@
             elById('font').value = options.items[0].font;
             elById('fontcolor').value = options.items[0].fontcolor;
             elById('stroke').value = options.items[0].stroke;
+            elById('imageurl').value = options.items[0].imageurl;
         }
         setTimeout(update, 100);
-        document.fonts.ready.then(function () { update() });
     });
 }());
 /* eslint-enable */
