@@ -55,9 +55,9 @@
         // Init defaults
         options.items = [{
             mode: 'image',
-            mSize: 20,
-            mPosX: 17,
-            mPosY: 50,
+            msize: 20,
+            mposx: 17,
+            mposy: 50,
             label: 'NANO',
             fontname: 'Nunito',
             fontcolor: '#000000',
@@ -65,9 +65,9 @@
         },
         {
             mode: 'label',
-            mSize: 14,
-            mPosX: 74,
-            mPosY: 47,
+            msize: 14,
+            mposx: 74,
+            mposy: 47,
             label: 'NANO ACCEPTED HERE',
             fontname: 'Nunito',
             fontcolor: '#000000',
@@ -75,9 +75,9 @@
         },
         {
             mode: 'label',
-            mSize: 10,
-            mPosX: 84,
-            mPosY: 63,
+            msize: 10,
+            mposx: 84,
+            mposy: 63,
             label: 'Pay with NANO',
             fontname: 'Nunito',
             fontcolor: '#ee8a2e',
@@ -85,9 +85,9 @@
         },
         {
             mode: 'image',
-            mSize: 9,
-            mPosX: 70,
-            mPosY: 62,
+            msize: 9,
+            mposx: 70,
+            mposy: 62,
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
@@ -96,9 +96,9 @@
         },
         {
             mode: 'label',
-            mSize: 20,
-            mPosX: 50,
-            mPosY: 50,
+            msize: 20,
+            mposx: 50,
+            mposy: 50,
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
@@ -106,9 +106,9 @@
         },
         {
             mode: 'label',
-            mSize: 20,
-            mPosX: 50,
-            mPosY: 50,
+            msize: 20,
+            mposx: 50,
+            mposy: 50,
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
@@ -116,9 +116,9 @@
         },
         {
             mode: 'label',
-            mSize: 20,
-            mPosX: 50,
-            mPosY: 50,
+            msize: 20,
+            mposx: 50,
+            mposy: 50,
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
@@ -150,8 +150,8 @@
     function updateQrCode() {
         options.render = valById('render');
         options.crisp = valById('crisp') === 'true';
-        options.ecLevel = valById('eclevel');
-        options.minVersion = intById('minversion');
+        options.eclevel = valById('eclevel');
+        options.minversion = intById('minversion');
 
         options.fill = valById('fill');
         options.back = valById('back');
@@ -166,9 +166,9 @@
         options.items[valById('item')] = {
             mode: valById('mode'),
 
-            mSize: intById('msize'),
-            mPosX: intById('mposx'),
-            mPosY: intById('mposy'),
+            msize: intById('msize'),
+            mposx: intById('mposx'),
+            mposy: intById('mposy'),
 
             label: valById('label'),
             fontname: valById('font'),
@@ -202,15 +202,13 @@
 
     function update() {
         updateGui();
-        setTimeout(function () {
-            updateQrCode();
-        }, 250);
+        updateQrCode();
     }
 
     function updateHash() {
-        console.log('location.hash', '' + location.hash + '');
-        location.hash = encodeURIComponent('options=' + JSON.stringify(options)); // if (location.hash) 
         update();
+        console.log('updateHash options.items[0].mposx', options.items[0].mposx);
+        location.hash = encodeURIComponent('options=' + JSON.stringify(options)); // if (location.hash) 
     }
 
     function onImageInput() {
@@ -229,9 +227,9 @@
     function onItemChanged() {
         var item = valById('item');
         elById('mode').value = options.items[item].mode;
-        elById('msize').value = options.items[item].mSize;
-        elById('mposx').value = options.items[item].mPosX;
-        elById('mposy').value = options.items[item].mPosY;
+        elById('msize').value = options.items[item].msize;
+        elById('mposx').value = options.items[item].mposx;
+        elById('mposy').value = options.items[item].mposy;
         elById('label').value = options.items[item].label;
         elById('font').value = options.items[item].fontname;
         elById('fontcolor').value = options.items[item].fontcolor;
@@ -256,7 +254,7 @@
         onEvent(elById('mode'), 'change', onModeChanged);
         all('input, textarea, select', function (el) {
             onEvent(el, 'input', updateHash);
-            onEvent(el, 'change', update);
+            onEvent(el, 'change', updateHash);
         });
         onEvent(win, 'load', update);
         onModeChanged();
@@ -264,6 +262,25 @@
             options = JSON.parse(decodeURIComponent(location.hash).substring(9));
             options.items[0].image = img2;
             options.items[3].image = img;
+            elById('size').value = options.size;
+            elById('width').value = options.width;
+            elById('fill').value = options.fill;
+            elById('back').value = options.back;
+            elById('text').value = options.text;
+            elById('minversion').value = options.minversion;
+            elById('eclevel').value = options.eclevel;
+            elById('quiet').value = options.quiet;
+            elById('rounded').value = options.rounded;
+                        
+            elById('mode').value = options.items[0].mode;
+            elById('msize').value = options.items[0].msize;
+            elById('mposx').value = options.items[0].mposx;
+            elById('mposy').value = options.items[0].mposy;
+            elById('label').value = options.items[0].label;
+            elById('font').value = options.items[0].font;
+            elById('fontcolor').value = options.items[0].fontcolor;
+            elById('stroke').value = options.items[0].stroke;
+            //elById('image').value = options.items[0].image;
         }
         setTimeout(update, 100);
         document.fonts.ready.then(function () { update() });

@@ -6,10 +6,10 @@ const vendorCode = (() => {
     return qrcode; // eslint-disable-line no-undef
 })();
 
-const minCode = (text, level, minVersion = 1) => {
-    minVersion = Math.max(1, minVersion);
+const minCode = (text, level, minversion = 1) => {
+    minversion = Math.max(1, minversion);
 
-    for (let version = minVersion; version <= 40; version += 1) {
+    for (let version = minversion; version <= 40; version += 1) {
         try {
             const qr = vendorCode(version, level);
             qr.addData(text);
@@ -32,8 +32,8 @@ const minCode = (text, level, minVersion = 1) => {
     return null;
 };
 
-const quietCode = (text = '', level = 'L', minVersion = 1, quiet = 0) => {
-    const qr = minCode(text, level, minVersion);
+const quietCode = (text = '', level = 'L', minversion = 1, quiet = 0) => {
+    const qr = minCode(text, level, minversion);
     if (qr) {
         const prevIsDark = qr.isDark;
         qr.moduleCount += 2 * quiet;

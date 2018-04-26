@@ -6,10 +6,10 @@ module.exports = {
     crisp: true,
 
     // minimum version: 1..40
-    minVersion: 1,
+    minversion: 1,
 
     // error correction level: 'L', 'M', 'Q' or 'H'
-    ecLevel: 'L',
+    eclevel: 'L',
 
     // size in pixel
     size: 200,
@@ -36,9 +36,9 @@ module.exports = {
     mode: 'plain',
 
     // label/image size and pos in pc: 0..100
-    mSize: 30,
-    mPosX: 50,
-    mPosY: 50,
+    msize: 30,
+    mposx: 50,
+    mposy: 50,
 
     // label
     label: 'no label',
