@@ -56,7 +56,7 @@
         options.items = [{
             mode: 'image',
             msize: 20,
-            mposx: 17,
+            mposx: 12,
             mposy: 50,
             label: 'NANO',
             fontname: 'Nunito',
@@ -87,7 +87,7 @@
         {
             mode: 'image',
             msize: 9,
-            mposx: 70,
+            mposx: 60,
             mposy: 62,
             label: '',
             fontname: 'Nunito',
