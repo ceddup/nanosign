@@ -228,7 +228,7 @@
 
     function updateHash() {
         update();
-        location.hash = 'content=' + elById('text').value + '&options=' + encodeURIComponent(JSON.stringify(options));
+        location.hash = 'content=' + encodeURIComponent(elById('text').value) + '&options=' + encodeURIComponent(JSON.stringify(options));
     }
 
     function onImageInput() {
@@ -320,7 +320,7 @@
             elById('imageurl').value = options.items[0].imageurl;
         }
         if (getHashValue('content')) {
-            elById('text').value = getHashValue('content');
+            elById('text').value = decodeURIComponent(getHashValue('content'));
         }
         setTimeout(update, 100);
     });
