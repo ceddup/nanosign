@@ -32,6 +32,11 @@
         return img;
     }
 
+    function getHashValue(key) {
+        var matches = location.hash.match(new RegExp(key+'=([^&]*)'));
+        return matches ? matches[1] : null;
+      }
+
     function elById(id) {
         return doc.getElementById(id);
     }
@@ -223,7 +228,7 @@
 
     function updateHash() {
         update();
-        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
+        location.hash = 'content=' + elById('text').value + '&options=' + encodeURIComponent(JSON.stringify(options));
     }
 
     function onImageInput() {
@@ -292,8 +297,8 @@
         onEvent(win, 'load', update);
         onModeChanged();
         onImageInputChanged();
-        if (location.hash.startsWith('#options')) {
-            options = JSON.parse(decodeURIComponent(location.hash).substring(9));
+        if (getHashValue('options')) {
+            options = JSON.parse(decodeURIComponent(getHashValue('options')));
             elById('size').value = options.size;
             elById('width').value = options.width;
             elById('fill').value = options.fill;
@@ -313,6 +318,9 @@
             elById('fontcolor').value = options.items[0].fontcolor;
             elById('stroke').value = options.items[0].stroke;
             elById('imageurl').value = options.items[0].imageurl;
+        }
+        if (getHashValue('content')) {
+            elById('text').value = getHashValue('content');
         }
         setTimeout(update, 100);
     });
