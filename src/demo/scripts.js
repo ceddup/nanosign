@@ -112,8 +112,7 @@
             label: 'New text',
             fontname: 'Nunito',
             fontcolor: '#000000',
-            stroke: true,
-            imageurl: 'http://nanosign.org/Nano_basic_logo.png'
+            stroke: true
         };
     }
 
@@ -194,6 +193,18 @@
         }
     }
 
+    function updateItemsLabel() {
+        forEach(options.items, function (item, index) {
+            if (item) {
+                if (item.mode == 'label') {
+                    elById('item').options[index].innerHTML = 'Item ' + (index + 1) + ' ' + item.label;
+                } else {
+                    elById('item').options[index].innerHTML = 'Item ' + (index + 1) + ' image';
+                }
+            }
+        });
+    }
+
     function getAsUriParameters (data) {
         return Object.keys(data).map(function (k) {
             if (_.isArray(data[k])) {
@@ -215,6 +226,7 @@
     function updateHash() {
         update();
         location.hash = 'content=' + encodeURIComponent(elById('text').value) + '&options=' + encodeURIComponent(JSON.stringify(options));
+        updateItemsLabel();
     }
 
     function onImageInput() {
@@ -246,6 +258,7 @@
         elById('imageurl').value = options.items[item].imageurl;
         elById('stroke').checked = options.items[item].stroke;
         onModeChanged();
+        updateItemsLabel();
     }
 
     function onModeChanged() {
@@ -255,6 +268,11 @@
         } else {
             elById('fontblock').style.display = 'none';
             elById('imageblock').style.display = 'block';
+            if (!elById('imageurl').value || elById('imageurl').value === 'undefined') {
+                elById('imageurl').value = 'http://nanosign.org/Nano_basic_logo.png';
+                var item = valById('item');
+                options.items[item].imageurl = 'http://nanosign.org/Nano_basic_logo.png';
+            } 
         }
     }
 
@@ -311,6 +329,7 @@
         if (getHashValue('content')) {
             elById('text').value = decodeURIComponent(getHashValue('content'));
         }
+        updateItemsLabel();
         setTimeout(update, 100);
     });
 }());
