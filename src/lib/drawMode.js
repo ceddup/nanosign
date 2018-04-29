@@ -39,10 +39,12 @@ const drawImage = (context, settings, item) => {
 
 const drawMode = (context, settings) => {
     for (const item of settings.items) {
-        if (item.mode === 'label') {
-            drawLabel(context, settings, item);
-        } else if (item.mode === 'image') {
-            drawImage(context, settings, item);
+        if (item) {
+            if (item.mode === 'label') {
+                drawLabel(context, settings, item);
+            } else if (item.mode === 'image') {
+                drawImage(context, settings, item);
+            }
         }
     }
 };

@@ -99,38 +99,22 @@
             fontcolor: '#000000',
             stroke: true,
             imageurl: 'http://nanosign.org/Nano_basic_logo.png'
-        },
-        {
-            mode: 'label',
-            msize: 20,
-            mposx: 50,
-            mposy: 50,
-            label: '',
-            fontname: 'Nunito',
-            fontcolor: '#000000',
-            stroke: true
-        },
-        {
-            mode: 'label',
-            msize: 20,
-            mposx: 50,
-            mposy: 50,
-            label: '',
-            fontname: 'Nunito',
-            fontcolor: '#000000',
-            stroke: true
-        },
-        {
-            mode: 'label',
-            msize: 20,
-            mposx: 50,
-            mposy: 50,
-            label: '',
-            fontname: 'Nunito',
-            fontcolor: '#000000',
-            stroke: true
         }
         ];
+    }
+
+    function newItem() {
+        return {
+            mode: 'label',
+            msize: 9,
+            mposx: 60,
+            mposy: 62,
+            label: 'New text',
+            fontname: 'Nunito',
+            fontcolor: '#000000',
+            stroke: true,
+            imageurl: 'http://nanosign.org/Nano_basic_logo.png'
+        };
     }
 
     function forEach(list, fn) {
@@ -180,20 +164,22 @@
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
             stroke: elById('stroke').checked,
-            imageurl: valById('imageurl'),
+            imageurl: valById('imageurl') ? valById('imageurl') : '',
             image: elById('img-buffer' + valById('item'))
         };
         forEach(options.items, function (item) {
-            if (!item.image || item.image.src !== item.imageurl) {
-                if (!item.image || !item.image.src || item.image.src === ''){
-                    item.image = newImage();
-                }
-                if (item.imageurl && item.imageurl !== '') {            
-                    item.image.src = item.imageurl;
-                    if (!item.image.complete) {
-                        item.image.onload = function() {
-                            update();
-                        };
+            if (item && item.mode == 'image') {
+                if (!item.image || item.image.src !== item.imageurl) {
+                    if (!item.image || !item.image.src || item.image.src === ''){
+                        item.image = newImage();
+                    }
+                    if (item.imageurl && item.imageurl !== '') {            
+                        item.image.src = item.imageurl;
+                        if (!item.image.complete) {
+                            item.image.onload = function() {
+                                update();
+                            };
+                        }
                     }
                 }
             }
@@ -247,6 +233,9 @@
 
     function onItemChanged() {
         var item = valById('item');
+        if (!options.items[item]) {
+            options.items[item] = newItem();
+        }
         elById('mode').value = options.items[item].mode;
         elById('msize').value = options.items[item].msize;
         elById('mposx').value = options.items[item].mposx;
