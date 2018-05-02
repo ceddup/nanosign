@@ -32,6 +32,11 @@
         return img;
     }
 
+    function getHashValue(key) {
+        var matches = location.hash.match(new RegExp(key+'=([^&]*)'));
+        return matches ? matches[1] : null;
+      }
+
     function elById(id) {
         return doc.getElementById(id);
     }
@@ -56,7 +61,7 @@
         options.items = [{
             mode: 'image',
             msize: 20,
-            mposx: 17,
+            mposx: 12,
             mposy: 50,
             label: 'NANO',
             fontname: 'Nunito',
@@ -87,45 +92,28 @@
         {
             mode: 'image',
             msize: 9,
-            mposx: 70,
+            mposx: 60,
             mposy: 62,
             label: '',
             fontname: 'Nunito',
             fontcolor: '#000000',
             stroke: true,
             imageurl: 'http://nanosign.org/Nano_basic_logo.png'
-        },
-        {
-            mode: 'label',
-            msize: 20,
-            mposx: 50,
-            mposy: 50,
-            label: '',
-            fontname: 'Nunito',
-            fontcolor: '#000000',
-            stroke: true
-        },
-        {
-            mode: 'label',
-            msize: 20,
-            mposx: 50,
-            mposy: 50,
-            label: '',
-            fontname: 'Nunito',
-            fontcolor: '#000000',
-            stroke: true
-        },
-        {
-            mode: 'label',
-            msize: 20,
-            mposx: 50,
-            mposy: 50,
-            label: '',
-            fontname: 'Nunito',
-            fontcolor: '#000000',
-            stroke: true
         }
         ];
+    }
+
+    function newItem() {
+        return {
+            mode: 'label',
+            msize: 9,
+            mposx: 60,
+            mposy: 62,
+            label: 'New text',
+            fontname: 'Nunito',
+            fontcolor: '#000000',
+            stroke: true
+        };
     }
 
     function forEach(list, fn) {
@@ -175,20 +163,22 @@
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
             stroke: elById('stroke').checked,
-            imageurl: valById('imageurl'),
+            imageurl: valById('imageurl') ? valById('imageurl') : '',
             image: elById('img-buffer' + valById('item'))
         };
         forEach(options.items, function (item) {
-            if (!item.image || item.image.src !== item.imageurl) {
-                if (!item.image || !item.image.src || item.image.src === ''){
-                    item.image = newImage();
-                }
-                if (item.imageurl && item.imageurl !== '') {            
-                    item.image.src = item.imageurl;
-                    if (!item.image.complete) {
-                        item.image.onload = function() {
-                            update();
-                        };
+            if (item && item.mode == 'image') {
+                if (!item.image || item.image.src !== item.imageurl) {
+                    if (!item.image || !item.image.src || item.image.src === ''){
+                        item.image = newImage();
+                    }
+                    if (item.imageurl && item.imageurl !== '') {            
+                        item.image.src = item.imageurl;
+                        if (!item.image.complete) {
+                            item.image.onload = function() {
+                                update();
+                            };
+                        }
                     }
                 }
             }
@@ -201,6 +191,18 @@
         if (qrcode) {
             container.appendChild(qrcode);
         }
+    }
+
+    function updateItemsLabel() {
+        forEach(options.items, function (item, index) {
+            if (item) {
+                if (item.mode == 'label') {
+                    elById('item').options[index].innerHTML = 'Item ' + (index + 1) + ' ' + item.label;
+                } else {
+                    elById('item').options[index].innerHTML = 'Item ' + (index + 1) + ' image';
+                }
+            }
+        });
     }
 
     function getAsUriParameters (data) {
@@ -223,7 +225,8 @@
 
     function updateHash() {
         update();
-        location.hash = encodeURIComponent('options=' + JSON.stringify(options));
+        location.hash = 'content=' + encodeURIComponent(elById('text').value) + '&options=' + encodeURIComponent(JSON.stringify(options));
+        updateItemsLabel();
     }
 
     function onImageInput() {
@@ -242,6 +245,9 @@
 
     function onItemChanged() {
         var item = valById('item');
+        if (!options.items[item]) {
+            options.items[item] = newItem();
+        }
         elById('mode').value = options.items[item].mode;
         elById('msize').value = options.items[item].msize;
         elById('mposx').value = options.items[item].mposx;
@@ -252,6 +258,7 @@
         elById('imageurl').value = options.items[item].imageurl;
         elById('stroke').checked = options.items[item].stroke;
         onModeChanged();
+        updateItemsLabel();
     }
 
     function onModeChanged() {
@@ -261,6 +268,11 @@
         } else {
             elById('fontblock').style.display = 'none';
             elById('imageblock').style.display = 'block';
+            if (!elById('imageurl').value || elById('imageurl').value === 'undefined') {
+                elById('imageurl').value = 'http://nanosign.org/Nano_basic_logo.png';
+                var item = valById('item');
+                options.items[item].imageurl = 'http://nanosign.org/Nano_basic_logo.png';
+            } 
         }
     }
 
@@ -292,8 +304,8 @@
         onEvent(win, 'load', update);
         onModeChanged();
         onImageInputChanged();
-        if (location.hash.startsWith('#options')) {
-            options = JSON.parse(decodeURIComponent(location.hash).substring(9));
+        if (getHashValue('options')) {
+            options = JSON.parse(decodeURIComponent(getHashValue('options')));
             elById('size').value = options.size;
             elById('width').value = options.width;
             elById('fill').value = options.fill;
@@ -314,6 +326,10 @@
             elById('stroke').value = options.items[0].stroke;
             elById('imageurl').value = options.items[0].imageurl;
         }
+        if (getHashValue('content')) {
+            elById('text').value = decodeURIComponent(getHashValue('content'));
+        }
+        updateItemsLabel();
         setTimeout(update, 100);
     });
 }());
