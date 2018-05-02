@@ -6,15 +6,6 @@
     var nanosign = win.nanosign;
     var options = {};
 
-    var nunitoFont = new FontFaceObserver('Nunito');
-
-    // Refresh when Nunito font is loaded
-    nunitoFont.load().then(function () {
-        update();
-    }, function () {
-        console.log('Nunito is not available');
-    });
-
     var guiValuePairs = [
         ['size', 'px'],
         ['width', 'x'],
@@ -286,15 +277,45 @@
         }
     }
 
+    function onFontNameChanged() {
+        updateHash();
+        loadFont(valById('font'));
+    }
+
+    function loadFont(font) {
+        if (font) {
+            WebFont.load( {
+                google: { 
+                    families: [font]
+                },
+                fontactive: function(familyName, fvd) {
+                    if (familyName === font) elById('font').style.backgroundColor = '#ccffcc';
+                    update();
+                },
+                fontinactive: function(familyName, fvd) {
+                    if (familyName === font) elById('font').style.backgroundColor = '#ff4d4d';
+                },
+                fontloading: function(familyName, fvd) {
+                    if (familyName === font) elById('font').style.backgroundColor = '#ffe6cc';
+                }
+            });
+        }
+    }
+
     onReady(function () {
         onEvent(elById('item'), 'change', onItemChanged);
         onEvent(elById('image'), 'change', onImageInput);
         onEvent(elById('mode'), 'change', onModeChanged);
+        
         all('input, textarea, select', function (el) {
             if (el.id === 'item') {
                 onEvent(el, 'change', update);
             } else if (el.id === 'imageinput') {
                 onEvent(el, 'change', onImageInputChanged);
+            } else if (el.id === 'font') {
+                onEvent(el, 'input', onFontNameChanged);
+                onEvent(el, 'change', onFontNameChanged);
+                onEvent(el, 'paste', onFontNameChanged); 
             } else {
                 onEvent(el, 'input', updateHash);
                 onEvent(el, 'change', updateHash);
@@ -326,6 +347,12 @@
             elById('stroke').value = options.items[0].stroke;
             elById('imageurl').value = options.items[0].imageurl;
         }
+
+        forEach(options.items, function (item) {
+            if (item && item.mode === 'label' && item.fontname) {
+                loadFont(item.fontname);
+            }
+        });
         if (getHashValue('content')) {
             elById('text').value = decodeURIComponent(getHashValue('content'));
         }
