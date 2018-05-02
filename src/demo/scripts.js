@@ -289,14 +289,18 @@
                     families: [font]
                 },
                 fontactive: function(familyName, fvd) {
-                    if (familyName === font) elById('font').style.backgroundColor = '#ccffcc';
+                    elById('font').style.backgroundColor = '#ccffcc';
                     update();
                 },
-                fontinactive: function(familyName, fvd) {
-                    if (familyName === font) elById('font').style.backgroundColor = '#ff4d4d';
-                },
                 fontloading: function(familyName, fvd) {
-                    if (familyName === font) elById('font').style.backgroundColor = '#ffe6cc';
+                    if (elById('font').value === familyName){
+                        elById('font').style.backgroundColor = '#ffe6cc';
+                    }
+                },
+                fontinactive: function(familyName, fvd) {
+                    if (elById('font').value === familyName){
+                        elById('font').style.backgroundColor = '#ff4d4d';
+                    }
                 }
             });
         }
