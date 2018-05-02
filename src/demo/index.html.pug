@@ -74,7 +74,7 @@ html(lang='en')
                 label(for='label') LABEL
                 input#label(type='text', value='NANO')
                 label(for='font') FONT NAME
-                input#font(type='text', value='Nunito')
+                input#font(type='text', value='Nunito', onfocus='this.setSelectionRange(0, this.value.length)')
                 label(for='fontcolor') FONT COLOR
                 input#fontcolor(type='color', value='#000000')
                 div.bottomlinks(style="display:flex;align-items:center;")
