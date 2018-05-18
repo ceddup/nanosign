@@ -6,6 +6,10 @@
     var nanosign = win.nanosign;
     var options = {};
 
+    const colorActive = '#ccffcc';
+    const colorLoading = '#ffe6cc';
+    const colorInactive = '#ff4d4d';
+
     var guiValuePairs = [
         ['size', 'px'],
         ['width', 'x'],
@@ -16,12 +20,6 @@
         ['mposx', '%'],
         ['mposy', '%']
     ];
-
-    function newImage() {
-        var img = new Image();
-        img.src = 'Nano_basic_logo.png';
-        return img;
-    }
 
     function getHashValue(key) {
         var matches = location.hash.match(new RegExp(key+'=([^&]*)'));
@@ -161,7 +159,7 @@
             if (item && item.mode == 'image') {
                 if (!item.image || item.image.src !== item.imageurl) {
                     if (!item.image || !item.image.src || item.image.src === ''){
-                        item.image = newImage();
+                        item.image = new Image();
                     }
                     if (item.imageurl && item.imageurl !== '') {            
                         item.image.src = item.imageurl;
@@ -289,17 +287,17 @@
                     families: [font]
                 },
                 fontactive: function(familyName, fvd) {
-                    elById('font').style.backgroundColor = '#ccffcc';
+                    elById('font').style.backgroundColor = colorActive;
                     update();
                 },
                 fontloading: function(familyName, fvd) {
                     if (elById('font').value === familyName){
-                        elById('font').style.backgroundColor = '#ffe6cc';
+                        elById('font').style.backgroundColor = colorLoading;
                     }
                 },
                 fontinactive: function(familyName, fvd) {
                     if (elById('font').value === familyName){
-                        elById('font').style.backgroundColor = '#ff4d4d';
+                        elById('font').style.backgroundColor = colorInactive;
                     }
                 }
             });

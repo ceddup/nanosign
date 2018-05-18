@@ -67,19 +67,21 @@ function getNewCanvas(canvas) {
 
 const drawImage = (item, context, settings) => {
 	return new Promise(function(resolve) {
-        const size = settings.size;
-        const w = item.image.naturalWidth || 1;
-        const h = item.image.naturalHeight || 1; 
-        const sh = item.msize * 0.01;
-        const sw = sh * w / (h * settings.width);
-        const sl = (1 - sw) * item.mposx * 0.01;
-        const st = (1 - sh) * item.mposy * 0.01;
-        const x = sl * size * settings.width;
-        const y = st * size;
-        const iw = sw * size * settings.width;
-        const ih = sh * size;
+        if (item.image && item.image.naturalWidth !== 0) { // naturalWidth !== 0 avoids broken state like when scr='drgq'
+            const size = settings.size;
+            const w = item.image.naturalWidth || 1;
+            const h = item.image.naturalHeight || 1; 
+            const sh = item.msize * 0.01;
+            const sw = sh * w / (h * settings.width);
+            const sl = (1 - sw) * item.mposx * 0.01;
+            const st = (1 - sh) * item.mposy * 0.01;
+            const x = sl * size * settings.width;
+            const y = st * size;
+            const iw = sw * size * settings.width;
+            const ih = sh * size;
 
-        context.drawImage(item.image, x, y, iw, ih);
+            context.drawImage(item.image, x, y, iw, ih);
+        }
         resolve();
     });
 };
