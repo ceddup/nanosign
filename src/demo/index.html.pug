@@ -28,7 +28,12 @@ html(lang='en')
             input#width(type='range', value='3', min='1', max='10', step='1')
             label(for='fill') FILL
             input#fill(type='color', value='#498AC7')
-            label(for='back') BACK
+            label(for='background') BACKGROUND
+            select#background
+                option(value='transparent') transparent
+                option(value='color') color
+                option(value='image') image
+            label(for='back') BACKGROUND COLOR
             input#back(type='color', value='#ffffff')
             label(for='text') CONTENT
             textarea#text xrb:xrb_<your_nano_address>
