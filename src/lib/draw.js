@@ -3,8 +3,10 @@ const drawMode = require('./drawMode');
 
 const drawBackground = (context, settings) => {
 	return new Promise(function(resolve) {
-        context.fillStyle = settings.back;
-        context.fillRect(0, 0, settings.size * settings.width, settings.size);
+        if (settings.background === 'color') {
+            context.fillStyle = settings.back;
+            context.fillRect(0, 0, settings.size * settings.width, settings.size);
+        }
         resolve();
     });
 };

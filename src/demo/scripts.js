@@ -129,6 +129,7 @@
         options.render = valById('render');
         options.crisp = valById('crisp') === 'true';
         options.eclevel = valById('eclevel');
+        options.background = valById('background');
         options.minversion = intById('minversion');
 
         options.fill = valById('fill');
@@ -152,8 +153,7 @@
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
             stroke: elById('stroke').checked,
-            imageurl: valById('imageurl') ? valById('imageurl') : '',
-            image: elById('img-buffer' + valById('item'))
+            imageurl: valById('imageurl') ? valById('imageurl') : ''
         };
         forEach(options.items, function (item) {
             if (item && item.mode == 'image') {
@@ -334,6 +334,7 @@
             elById('fill').value = options.fill;
             elById('back').value = options.back;
             elById('text').value = options.text;
+            elById('background').value = options.background;
             elById('minversion').value = options.minversion;
             elById('eclevel').value = options.eclevel;
             elById('quiet').value = options.quiet;
