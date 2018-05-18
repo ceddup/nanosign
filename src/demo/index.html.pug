@@ -36,6 +36,9 @@ html(lang='en')
             div#backgroundcolorblock
                 label(for='back') BACKGROUND COLOR
                 input#back(type='color', value='#ffffff')
+            div#backgroundimageblock
+                label(for='backgroundimageurl') BACKGROUND IMAGE URL
+                input#backgroundimageurl(type='text', value='https://cdn.eso.org/images/large/potw1023a.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
             label(for='text') CONTENT
             textarea#text xrb:xrb_<your_nano_address>
 

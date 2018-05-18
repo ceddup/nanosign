@@ -6,8 +6,20 @@ const drawBackground = (context, settings) => {
         if (settings.background === 'color') {
             context.fillStyle = settings.back;
             context.fillRect(0, 0, settings.size * settings.width, settings.size);
+            resolve();
+        } else if (settings.background === 'image') {
+            settings.backgroundimage = new Image();
+            settings.backgroundimage.src = settings.backgroundimageurl;
+            settings.backgroundimage.onload = function() {
+                context.drawImage(settings.backgroundimage, 0, 0);
+                resolve();
+            };
+            settings.backgroundimage.onerror = function() {
+                resolve();
+            };
+        } else {
+            resolve();
         }
-        resolve();
     });
 };
 

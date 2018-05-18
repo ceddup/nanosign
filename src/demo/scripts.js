@@ -130,6 +130,7 @@
         options.crisp = valById('crisp') === 'true';
         options.eclevel = valById('eclevel');
         options.background = valById('background');
+        options.backgroundimageurl = valById('backgroundimageurl');
         options.minversion = intById('minversion');
 
         options.fill = valById('fill');
@@ -278,10 +279,15 @@
     function onBackgroundChanged() {
         if (elById('background').value === 'transparent'){
             elById('backgroundcolorblock').style.display = 'none';
+            elById('backgroundimageblock').style.display = 'none';
+        } else if (elById('background').value === 'image'){
+            elById('backgroundcolorblock').style.display = 'none';
+            elById('backgroundimageblock').style.display = 'block';
         } else {
             elById('backgroundcolorblock').style.display = 'block';
+            elById('backgroundimageblock').style.display = 'none';
         }
-        update();
+        updateHash();
     }
 
     function onFontNameChanged() {
