@@ -275,6 +275,15 @@
         }
     }
 
+    function onBackgroundChanged() {
+        if (elById('background').value === 'transparent'){
+            elById('backgroundcolorblock').style.display = 'none';
+        } else {
+            elById('backgroundcolorblock').style.display = 'block';
+        }
+        update();
+    }
+
     function onFontNameChanged() {
         updateHash();
         loadFont(valById('font'));
@@ -314,6 +323,8 @@
                 onEvent(el, 'change', update);
             } else if (el.id === 'imageinput') {
                 onEvent(el, 'change', onImageInputChanged);
+            } else if (el.id === 'background') {
+                onEvent(el, 'change', onBackgroundChanged);
             } else if (el.id === 'font') {
                 onEvent(el, 'input', onFontNameChanged);
                 onEvent(el, 'change', onFontNameChanged);
