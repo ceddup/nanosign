@@ -39,6 +39,7 @@ html(lang='en')
                 input#backgroundimageurl(type='text', value='https://cdn.eso.org/images/large/potw1023a.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
             label(for='qrcodefilltype') QR CODE FILL
             select#qrcodefilltype
+                option(value='none') none
                 option(value='color', selected='selected') color
                 option(value='image') image
             label(for='fill') QR CODE COLOR

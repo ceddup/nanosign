@@ -141,6 +141,7 @@
         options.width = intById('width');
         options.rounded = intById('rounded');
         options.quiet = intById('quiet');
+        options.qrcodefilltype = valById('qrcodefilltype');
 
         if (!options.items) options.items = [];
         options.items[valById('item')] = {
@@ -357,6 +358,7 @@
             elById('back').value = options.back;
             elById('text').value = options.text;
             elById('background').value = options.background;
+            elById('qrcodefilltype').value = options.qrcodefilltype;
             elById('minversion').value = options.minversion;
             elById('eclevel').value = options.eclevel;
             elById('quiet').value = options.quiet;
