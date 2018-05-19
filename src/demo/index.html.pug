@@ -26,8 +26,6 @@ html(lang='en')
             input#size(type='range', value='350', min='100', max='1000', step='50')
             label(for='width') WIDTH:
             input#width(type='range', value='3', min='1', max='10', step='1')
-            label(for='fill') FILL
-            input#fill(type='color', value='#498AC7')
             label(for='background') BACKGROUND
             select#background
                 option(value='transparent') transparent
@@ -39,6 +37,14 @@ html(lang='en')
             div#backgroundimageblock
                 label(for='backgroundimageurl') BACKGROUND IMAGE URL
                 input#backgroundimageurl(type='text', value='https://cdn.eso.org/images/large/potw1023a.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
+            label(for='qrcodefilltype') QR CODE FILL
+            select#qrcodefilltype
+                option(value='color', selected='selected') color
+                option(value='image') image
+            label(for='fill') QR CODE COLOR
+            input#fill(type='color', value='#498AC7')
+            label(for='qrcodeimage') QR CODE IMAGE URL
+            input#qrcodeimage(type='text', value='https://cdn.eso.org/images/large/potw1023a.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
             label(for='text') CONTENT
             textarea#text xrb:xrb_<your_nano_address>
 
@@ -112,3 +118,16 @@ html(lang='en')
                 span(style="line-height:30px;")
                     a(href='https://github.com/ceddup/nanosign', target="_blank") Nanosign on Github
 
+        img#img-buffer0(src='Nano_basic_dark.png')
+
+        img#img-buffer1(src='Nano_basic_dark.png')
+
+        img#img-buffer2(src='Nano_basic_dark.png')
+
+        img#img-buffer3(src='Nano_basic_logo.png')
+
+        img#img-buffer4(src='Nano_basic_dark.png')
+
+        img#img-buffer5(src='Nano_basic_dark.png')
+
+        img#img-buffer6(src='Nano_basic_dark.png')

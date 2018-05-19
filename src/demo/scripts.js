@@ -154,7 +154,8 @@
             fontname: valById('font'),
             fontcolor: valById('fontcolor'),
             stroke: elById('stroke').checked,
-            imageurl: valById('imageurl') ? valById('imageurl') : ''
+            imageurl: valById('imageurl') ? valById('imageurl') : '',
+            image: elById('img-buffer' + valById('item'))
         };
         forEach(options.items, function (item) {
             if (item && item.mode == 'image') {
@@ -277,6 +278,11 @@
     }
 
     function onBackgroundChanged() {
+        updateBackgroundBlocks();
+        updateHash();
+    }
+
+    function updateBackgroundBlocks() {
         if (elById('background').value === 'transparent'){
             elById('backgroundcolorblock').style.display = 'none';
             elById('backgroundimageblock').style.display = 'none';
@@ -287,7 +293,6 @@
             elById('backgroundcolorblock').style.display = 'block';
             elById('backgroundimageblock').style.display = 'none';
         }
-        updateHash();
     }
 
     function onFontNameChanged() {
@@ -377,6 +382,7 @@
             elById('text').value = decodeURIComponent(getHashValue('content'));
         }
         updateItemsLabel();
+        updateBackgroundBlocks();
         setTimeout(update, 100);
     });
 }());
