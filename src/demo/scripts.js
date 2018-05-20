@@ -265,7 +265,7 @@
         elById('stroke').checked = options.items[item].stroke;
         onModeChanged();
         updateItemsLabel();
-        updateFontBackgroundBlocks();        
+        updateFontBackgroundBlocks();    
     }
 
     function onModeChanged() {
