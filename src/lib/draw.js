@@ -55,13 +55,16 @@ const drawModules = (qr, context, settings) => {
         context.fillStyle = settings.fill;
         if (settings.qrcodefilltype === 'image') {
             var img = document.createElement('img');
-            img.src='https://news.files.bbci.co.uk/include/shorthand/40076/media/sea-l_gbqwvrs-mr_4pkq6di.jpg';
+            img.src = settings.qrcodeimage;
             //draw the text
-            img.onload= function(){
+            img.onload = function(){
                 drawQR(context, img);
                 context.translate(-offset, -offset);
                 resolve();
             }
+            img.onerror = function() {
+                resolve();
+            };
         } else if (settings.qrcodefilltype === 'color') {
             context.translate(-offset, -offset);
             context.fill();

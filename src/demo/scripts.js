@@ -54,7 +54,9 @@
             mposy: 50,
             label: 'NANO',
             fontname: 'Nunito',
+            fontbackground : 'color',
             fontcolor: '#000000',
+            fontimagetexture: 'http://nanosign.org/wood.jpg',
             stroke: true,
             imageurl: 'http://nanosign.org/Nano_basic_dark.png'
         },
@@ -65,7 +67,9 @@
             mposy: 47,
             label: 'NANO ACCEPTED HERE',
             fontname: 'Nunito',
+            fontbackground : 'color',
             fontcolor: '#000000',
+            fontimagetexture: 'http://nanosign.org/wood.jpg',
             stroke: true
         },
         {
@@ -75,7 +79,9 @@
             mposy: 63,
             label: 'Pay with NANO',
             fontname: 'Nunito',
+            fontbackground : 'color',
             fontcolor: '#ee8a2e',
+            fontimagetexture: 'http://nanosign.org/wood.jpg',
             stroke: true
         },
         {
@@ -85,7 +91,9 @@
             mposy: 62,
             label: '',
             fontname: 'Nunito',
+            fontbackground : 'color',
             fontcolor: '#000000',
+            fontimagetexture: 'http://nanosign.org/wood.jpg',
             stroke: true,
             imageurl: 'http://nanosign.org/Nano_basic_logo.png'
         }
@@ -100,6 +108,7 @@
             mposy: 62,
             label: 'New text',
             fontname: 'Nunito',
+            fontbackground : color,
             fontcolor: '#000000',
             stroke: true
         };
@@ -142,6 +151,7 @@
         options.rounded = intById('rounded');
         options.quiet = intById('quiet');
         options.qrcodefilltype = valById('qrcodefilltype');
+        options.qrcodeimage = valById('qrcodeimage');
 
         if (!options.items) options.items = [];
         options.items[valById('item')] = {
@@ -153,7 +163,9 @@
 
             label: valById('label'),
             fontname: valById('font'),
+            fontbackground: valById('fontbackground'),
             fontcolor: valById('fontcolor'),
+            fontimagetexture: valById('fontimagetexture'),
             stroke: elById('stroke').checked,
             imageurl: valById('imageurl') ? valById('imageurl') : '',
             image: elById('img-buffer' + valById('item'))
@@ -246,7 +258,9 @@
         elById('mposy').value = options.items[item].mposy;
         elById('label').value = options.items[item].label;
         elById('font').value = options.items[item].fontname;
+        elById('fontbackground').value = options.items[item].fontbackground;
         elById('fontcolor').value = options.items[item].fontcolor;
+        elById('fontimagetexture').value = options.items[item].fontimagetexture;
         elById('imageurl').value = options.items[item].imageurl;
         elById('stroke').checked = options.items[item].stroke;
         onModeChanged();
@@ -296,6 +310,39 @@
         }
     }
 
+    function onQRCodeFillTypeChanged() {
+        updateQRFillBlocks();
+        updateHash();
+    }
+
+    function updateQRFillBlocks() {
+        if (elById('qrcodefilltype').value === 'none'){
+            elById('qrcodefillcolorblock').style.display = 'none';
+            elById('qrcodefillimageblock').style.display = 'none';
+        } else if (elById('qrcodefilltype').value === 'color'){
+            elById('qrcodefillcolorblock').style.display = 'block';
+            elById('qrcodefillimageblock').style.display = 'none';
+        } else { // image
+            elById('qrcodefillcolorblock').style.display = 'none';
+            elById('qrcodefillimageblock').style.display = 'block';
+        }
+    }
+
+    function onFontBackgroundChanged() {
+        updateFontBackgroundBlocks();
+        updateHash();
+    }
+
+    function updateFontBackgroundBlocks() {
+        if (elById('fontbackground').value === 'color') {
+            elById('fontimagetextureblock').style.display = 'none';
+            elById('fontimagecolorblock').style.display = 'block';
+        } else { // image
+            elById('fontimagetextureblock').style.display = 'block';
+            elById('fontimagecolorblock').style.display = 'none';
+        }
+    }
+
     function onFontNameChanged() {
         updateHash();
         loadFont(valById('font'));
@@ -337,6 +384,10 @@
                 onEvent(el, 'change', onImageInputChanged);
             } else if (el.id === 'background') {
                 onEvent(el, 'change', onBackgroundChanged);
+            } else if (el.id === 'qrcodefilltype') {
+                onEvent(el, 'change', onQRCodeFillTypeChanged);
+            } else if (el.id === 'fontbackground') {
+                onEvent(el, 'change', onFontBackgroundChanged);
             } else if (el.id === 'font') {
                 onEvent(el, 'input', onFontNameChanged);
                 onEvent(el, 'change', onFontNameChanged);
@@ -359,6 +410,7 @@
             elById('text').value = options.text;
             elById('background').value = options.background;
             elById('qrcodefilltype').value = options.qrcodefilltype;
+            elById('qrcodeimage').value = options.qrcodeimage ? options.qrcodeimage : 'http://nanosign.org/mood.jpg';
             elById('minversion').value = options.minversion;
             elById('eclevel').value = options.eclevel;
             elById('quiet').value = options.quiet;
@@ -370,7 +422,9 @@
             elById('mposy').value = options.items[0].mposy;
             elById('label').value = options.items[0].label;
             elById('font').value = options.items[0].font;
+            elById('fontbackground').value = options.items[0].fontbackground;
             elById('fontcolor').value = options.items[0].fontcolor;
+            elById('fontimagetexture').value = options.items[0].fontimagetexture;
             elById('stroke').value = options.items[0].stroke;
             elById('imageurl').value = options.items[0].imageurl;
         }
@@ -385,6 +439,8 @@
         }
         updateItemsLabel();
         updateBackgroundBlocks();
+        updateQRFillBlocks();
+        updateFontBackgroundBlocks()
         setTimeout(update, 100);
     });
 }());

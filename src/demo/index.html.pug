@@ -36,16 +36,18 @@ html(lang='en')
                 input#back(type='color', value='#ffffff')
             div#backgroundimageblock
                 label(for='backgroundimageurl') BACKGROUND IMAGE URL
-                input#backgroundimageurl(type='text', value='https://cdn.eso.org/images/large/potw1023a.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
+                input#backgroundimageurl(type='text', value='http://nanosign.org/moon.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
             label(for='qrcodefilltype') QR CODE FILL
             select#qrcodefilltype
                 option(value='none') none
                 option(value='color', selected='selected') color
                 option(value='image') image
-            label(for='fill') QR CODE COLOR
-            input#fill(type='color', value='#498AC7')
-            label(for='qrcodeimage') QR CODE IMAGE URL
-            input#qrcodeimage(type='text', value='https://cdn.eso.org/images/large/potw1023a.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
+            div#qrcodefillcolorblock
+                label(for='fill') QR CODE COLOR
+                input#fill(type='color', value='#498AC7')
+            div#qrcodefillimageblock
+                label(for='qrcodeimage') QR CODE IMAGE URL
+                input#qrcodeimage(type='text', value='http://nanosign.org/mood.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
             label(for='text') CONTENT
             textarea#text xrb:xrb_<your_nano_address>
 
@@ -91,9 +93,17 @@ html(lang='en')
                 input#label(type='text', value='NANO')
                 label(for='font') FONT NAME
                 input#font(type='text', value='Nunito', onfocus='this.setSelectionRange(0, this.value.length)')
-                label(for='fontcolor') FONT COLOR
-                input#fontcolor(type='color', value='#000000')
-                div.bottomlinks(style="display:flex;align-items:center;")
+                label(for='fontbackground') FONT BACKGROUND
+                select#fontbackground
+                    option(value='color', selected='selected') color
+                    option(value='image') image
+                div#fontimagetextureblock
+                    label(for='fontimagetexture') FONT IMAGE TEXTURE
+                    input#fontimagetexture(type='text', value='http://nanosign.org/wood.jpg', onfocus='this.setSelectionRange(0, this.value.length)')
+                div#fontimagecolorblock
+                    label(for='fontcolor') FONT COLOR
+                    input#fontcolor(type='color', value='#000000')
+                div.stokeblock(style="display:flex;align-items:center;")
                     input#stroke(type='checkbox', checked, style="width: 20px;")
                     span(style="line-height:30px;")
                         label(for='stroke') STROKE

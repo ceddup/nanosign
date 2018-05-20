@@ -18,9 +18,9 @@ const drawLabel = (item, context, settings) => {
             const y = st * size + 0.75 * item.msize * 0.01 * size;
 
             if (item.stroke) context.strokeText(item.label, x, y);
-            if (item.label === 'Pay with NANO'){
-                drawTexturedText(resolve, context, item, 'http://www.bittbox.com/wp-content/uploads/2008/04/free_hires_wood_texture_5.jpg', x, y);
-            } else {
+            if (item.fontbackground === 'image'){
+                drawTexturedText(resolve, context, item, item.fontimagetexture, x, y);
+            } else { // color
                 context.fillText(item.label, x, y);
                 resolve();
             }
@@ -35,6 +35,9 @@ function drawTexturedText(resolve, ctx, item, imgsrc, x, y) {
     img.onload= function(){
         drawTexturedTextWhenImageLoaded(resolve, ctx, item, img, x, y);
     }
+    img.onerror = function() {
+        resolve();
+    };
     img.src=imgsrc;
 }
 
