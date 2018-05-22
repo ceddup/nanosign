@@ -22,6 +22,12 @@ html(lang='en')
             a#banner(href=pkg.homepage) #{pkg.name} #{pkg.version}
 
             hr
+            label(for='template') TEMPLATE
+            select#template
+                option(value='default', selected='selected') default
+                option(value='ramisstyle') ramisstyle
+                option(value='texturedtext') texturedtext
+                option(value='moon') moon
             label(for='size') SIZE:
             input#size(type='range', value='350', min='100', max='1000', step='50')
             label(for='width') WIDTH:

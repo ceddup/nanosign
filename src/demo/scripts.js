@@ -21,6 +21,12 @@
         ['mposy', '%']
     ];
 
+    const templates = {
+        ramisstyle: '%7B%22items%22%3A%5B%7B%22mode%22%3A%22image%22%2C%22msize%22%3A0%2C%22mposx%22%3A10%2C%22mposy%22%3A85%2C%22label%22%3A%22NANO%22%2C%22fontname%22%3A%22undefined%22%2C%22fontbackground%22%3A%22%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22undefined%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_dark.png%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A14%2C%22mposx%22%3A79%2C%22mposy%22%3A47%2C%22label%22%3A%22We%20Accept%20Nano%20Currency%22%2C%22fontname%22%3A%22Roboto%22%2C%22fontcolor%22%3A%22%23ffffff%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_logo.png%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A0%2C%22mposx%22%3A84%2C%22mposy%22%3A63%2C%22label%22%3A%22Pay%20with%20NANO%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontcolor%22%3A%22%239fa8da%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22undefined%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22image%22%2C%22msize%22%3A0%2C%22mposx%22%3A60%2C%22mposy%22%3A62%2C%22label%22%3A%22%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_logo.png%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A9%2C%22mposx%22%3A60%2C%22mposy%22%3A62%2C%22label%22%3A%22%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22undefined%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A5%2C%22mposx%22%3A45%2C%22mposy%22%3A62%2C%22label%22%3A%22Instant.%20Feeless.%20Secure.%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontcolor%22%3A%22%239fa8da%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22undefined%22%2C%22image%22%3A%7B%7D%7D%5D%2C%22render%22%3Anull%2C%22crisp%22%3Afalse%2C%22eclevel%22%3A%22H%22%2C%22minversion%22%3A1%2C%22fill%22%3A%22%239fa8da%22%2C%22back%22%3A%22%233f51b5%22%2C%22text%22%3A%22xrb%3Axrb_%3Cyour_nano_address%3E%22%2C%22size%22%3A350%2C%22width%22%3A3%2C%22rounded%22%3A100%2C%22quiet%22%3A3%2C%22background%22%3A%22color%22%2C%22backgroundimageurl%22%3A%22http%3A%2F%2Fnanosign.org%2Fmoon.jpg%22%2C%22qrcodefilltype%22%3A%22color%22%2C%22qrcodeimage%22%3A%22http%3A%2F%2Fnanosign.org%2Fmood.jpg%22%7D',
+        texturedtext: '%7B%22items%22%3A%5B%7B%22mode%22%3A%22image%22%2C%22msize%22%3A20%2C%22mposx%22%3A12%2C%22mposy%22%3A50%2C%22label%22%3A%22NANO%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22color%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_dark.png%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A14%2C%22mposx%22%3A74%2C%22mposy%22%3A47%2C%22label%22%3A%22NANO%20ACCEPTED%20HERE%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22color%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Atrue%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A10%2C%22mposx%22%3A84%2C%22mposy%22%3A63%2C%22label%22%3A%22Pay%20with%20NANO%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22image%22%2C%22fontcolor%22%3A%22%23ee8a2e%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22undefined%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22image%22%2C%22msize%22%3A9%2C%22mposx%22%3A60%2C%22mposy%22%3A62%2C%22label%22%3A%22%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22color%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_logo.png%22%2C%22image%22%3A%7B%7D%7D%5D%2C%22render%22%3Anull%2C%22crisp%22%3Afalse%2C%22eclevel%22%3A%22H%22%2C%22background%22%3A%22color%22%2C%22backgroundimageurl%22%3A%22http%3A%2F%2Fnanosign.org%2Fmoon.jpg%22%2C%22minversion%22%3A1%2C%22fill%22%3A%22%23498ac7%22%2C%22back%22%3A%22%23ffffff%22%2C%22text%22%3A%22xrb%3Axrb_%3Cyour_nano_address%3E%22%2C%22size%22%3A350%2C%22width%22%3A3%2C%22rounded%22%3A100%2C%22quiet%22%3A2%2C%22qrcodefilltype%22%3A%22image%22%2C%22qrcodeimage%22%3A%22http%3A%2F%2Fnanosign.org%2Fmood.jpg%22%7D',
+        moon: '%7B%22items%22%3A%5B%7B%22mode%22%3A%22image%22%2C%22msize%22%3A20%2C%22mposx%22%3A12%2C%22mposy%22%3A50%2C%22label%22%3A%22NANO%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22color%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_dark.png%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A14%2C%22mposx%22%3A74%2C%22mposy%22%3A47%2C%22label%22%3A%22NANO%20ACCEPTED%20HERE%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22color%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Afalse%2C%22imageurl%22%3A%22undefined%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22label%22%2C%22msize%22%3A10%2C%22mposx%22%3A84%2C%22mposy%22%3A63%2C%22label%22%3A%22Pay%20with%20NANO%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22image%22%2C%22fontcolor%22%3A%22%23ee8a2e%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Afalse%2C%22imageurl%22%3A%22undefined%22%2C%22image%22%3A%7B%7D%7D%2C%7B%22mode%22%3A%22image%22%2C%22msize%22%3A9%2C%22mposx%22%3A60%2C%22mposy%22%3A62%2C%22label%22%3A%22%22%2C%22fontname%22%3A%22Nunito%22%2C%22fontbackground%22%3A%22color%22%2C%22fontcolor%22%3A%22%23000000%22%2C%22fontimagetexture%22%3A%22http%3A%2F%2Fnanosign.org%2Fwood.jpg%22%2C%22stroke%22%3Atrue%2C%22imageurl%22%3A%22http%3A%2F%2Fnanosign.org%2FNano_basic_logo.png%22%2C%22image%22%3A%7B%7D%7D%5D%2C%22render%22%3Anull%2C%22crisp%22%3Afalse%2C%22eclevel%22%3A%22H%22%2C%22background%22%3A%22image%22%2C%22backgroundimageurl%22%3A%22http%3A%2F%2Fnanosign.org%2Fmoon.jpg%22%2C%22minversion%22%3A1%2C%22fill%22%3A%22%230a243c%22%2C%22back%22%3A%22%23ffffff%22%2C%22text%22%3A%22xrb%3Axrb_%3Cyour_nano_address%3E%22%2C%22size%22%3A300%2C%22width%22%3A3%2C%22rounded%22%3A100%2C%22quiet%22%3A2%2C%22qrcodefilltype%22%3A%22color%22%2C%22qrcodeimage%22%3A%22http%3A%2F%2Fnanosign.org%2Fmood.jpg%22%7D'
+    }
+
     function getHashValue(key) {
         var matches = location.hash.match(new RegExp(key+'=([^&]*)'));
         return matches ? matches[1] : null;
@@ -349,6 +355,17 @@
         loadFont(valById('font'));
     }
 
+    function onTemplateChanged() {
+        if (valById('template') !== 'default') {
+            location.hash = 'template=' + valById('template');
+            loadPage(templates[valById('template')]);
+            setTimeout(update, 100);
+        } else {
+            history.pushState('', document.title, window.location.pathname + window.location.search);
+            location.reload();
+        }
+    }
+
     function loadFont(font) {
         if (font) {
             WebFont.load( {
@@ -389,6 +406,8 @@
                 onEvent(el, 'change', onQRCodeFillTypeChanged);
             } else if (el.id === 'fontbackground') {
                 onEvent(el, 'change', onFontBackgroundChanged);
+            } else if (el.id === 'template') {
+                onEvent(el, 'change', onTemplateChanged);
             } else if (el.id === 'font') {
                 onEvent(el, 'input', onFontNameChanged);
                 onEvent(el, 'change', onFontNameChanged);
@@ -400,10 +419,35 @@
             }
         });
         onEvent(win, 'load', update);
+
+        loadPage(getHashValue('options'));
+        setTimeout(update, 100);
+    });
+
+    function loadPage(optionsString) {
         onModeChanged();
         onImageInputChanged();
-        if (getHashValue('options')) {
-            options = JSON.parse(decodeURIComponent(getHashValue('options')));
+        if (optionsString) {
+            setOptions(optionsString)
+        }
+
+        forEach(options.items, function (item) {
+            if (item && item.mode === 'label' && item.fontname) {
+                loadFont(item.fontname);
+            }
+        });
+        if (getHashValue('content')) {
+            elById('text').value = decodeURIComponent(getHashValue('content'));
+        }
+        updateItemsLabel();
+        updateBackgroundBlocks();
+        updateQRFillBlocks();
+        updateFontBackgroundBlocks()
+    }
+
+    function setOptions(optionsString) {
+        if (optionsString) {
+            options = JSON.parse(decodeURIComponent(optionsString));
             elById('size').value = options.size;
             elById('width').value = options.width;
             elById('fill').value = options.fill;
@@ -429,20 +473,7 @@
             elById('stroke').value = options.items[0].stroke;
             elById('imageurl').value = options.items[0].imageurl;
         }
+    }
 
-        forEach(options.items, function (item) {
-            if (item && item.mode === 'label' && item.fontname) {
-                loadFont(item.fontname);
-            }
-        });
-        if (getHashValue('content')) {
-            elById('text').value = decodeURIComponent(getHashValue('content'));
-        }
-        updateItemsLabel();
-        updateBackgroundBlocks();
-        updateQRFillBlocks();
-        updateFontBackgroundBlocks()
-        setTimeout(update, 100);
-    });
 }());
 /* eslint-enable */
