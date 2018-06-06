@@ -8,7 +8,7 @@ html(lang='en')
         title Make your Nano Sign
         meta(name='description', content=`demo for ${pkg.name} (${pkg.homepage})`)
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        link(rel='shortcut icon', type='image/png', href='Nano_basic_logo.png')
+        link(rel='shortcut icon', type='image/png', href='Nanosign.png')
         link(rel='apple-touch-icon-precomposed', type='image/png', href='dummy.png')
         link(href='styles.css', rel='stylesheet')
         script(src="http://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js")
@@ -25,6 +25,7 @@ html(lang='en')
             label(for='template') TEMPLATE
             select#template
                 option(value='default', selected='selected') default
+                option(value='simpleqr') simple QR, fighthepowder!
                 option(value='ramisstyle') ramisstyle
                 option(value='texturedtext') texturedtext
                 option(value='moon') moon
