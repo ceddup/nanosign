@@ -52,5 +52,5 @@ Losts of informations about Nano, Nano nodes, etc: [nanode21.cloud](https://nano
 ## Donate to nanosign
 Join us to improve this alpha work or donate!
 ![](http://nanosign.org/Nanosign_donate.png)
-<p style="text-align: center;">xrb_3h6m8qrzcsj9uyuz6mnqn8y6e6p5e3w7w541ffu9p4zc9u5pcm9rmnqcic4d</p>
+<p align="center">xrb_3h6m8qrzcsj9uyuz6mnqn8y6e6p5e3w7w541ffu9p4zc9u5pcm9rmnqcic4d</p>
 
