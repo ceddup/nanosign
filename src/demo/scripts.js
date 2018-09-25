@@ -144,7 +144,7 @@
 
     function updateQrCode() {
         options.render = valById('render');
-        options.crisp = valById('crisp') === 'true';
+        options.crisp = true;
         options.eclevel = valById('eclevel');
         options.background = valById('background');
         options.backgroundimageurl = valById('backgroundimageurl');
