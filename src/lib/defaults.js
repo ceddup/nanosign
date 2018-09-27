@@ -2,9 +2,6 @@ module.exports = {
     // render method: 'canvas' or 'image'
     render: 'image',
 
-    // render pixel-perfect lines
-    crisp: true,
-
     // minimum version: 1..40
     minversion: 1,
 

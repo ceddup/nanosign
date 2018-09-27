@@ -40,10 +40,10 @@ const drawModules = (qr, context, settings) => {
 
         let moduleSize = settings.size / moduleCount;
         let offset = 0;
-        if (settings.crisp) {
-            moduleSize = Math.floor(moduleSize);
-            offset = Math.floor((settings.size - moduleSize * moduleCount) / 2);
-        }
+        //if (settings.crisp) {
+        moduleSize = Math.floor(moduleSize);
+        offset = Math.floor((settings.size - moduleSize * moduleCount) / 2);
+        //}
 
         context.translate(offset, offset);
         context.beginPath();
