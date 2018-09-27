@@ -9,7 +9,7 @@ const DEMO = join(SRC, 'demo');
 const BUILD = join(ROOT, 'build');
 const DIST = join(ROOT, 'dist');
 
-ghu.defaults('release');
+ghu.defaults('quick');
 
 ghu.before(runtime => {
     runtime.pkg = Object.assign({}, require('./package.json'));

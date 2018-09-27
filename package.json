@@ -1,6 +1,6 @@
 {
   "name": "nanosign",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make a Nano accepted here sign with QR codes.",
   "homepage": "http://nanosign.org",
   "bugs": "https://github.com/ceddup/nanosign/issues",
@@ -13,7 +13,7 @@
   "main": "dist/nanosign.min.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "node ghu release",
+    "build": "node ghu build",
     "precommit": "npm run -s lint && npm run -s build"
   },
   "devDependencies": {
