@@ -17,10 +17,10 @@
     "precommit": "npm run -s lint && npm run -s build"
   },
   "devDependencies": {
-    "babel-loader": "7.0.0",
+    "babel-loader": "9.1.0",
     "babel-preset-es2015": "6.24.1",
     "eslint": "3.19.0",
-    "ghu": "0.12.0"
+    "ghu": "0.28.0"
   },
   "engines": {
     "node": ">=6.0.0"
